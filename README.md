@@ -1,4 +1,5 @@
-# CivicConnect
+
+**# CivicConnect**
 
 A Django app for reporting and tracking local civic issues (waste, street lights, water problems, etc.), with public signup/login and an admin panel for verifying and resolving reports.
 
@@ -97,3 +98,6 @@ Then set a `DATABASE_URL` env var on your host and it'll switch automatically.
 | `DJANGO_DEBUG` | `True`/`False` | `False` |
 | `DJANGO_ALLOWED_HOSTS` | comma-separated extra hostnames (e.g. a custom domain) | none |
 | `RENDER_EXTERNAL_HOSTNAME` | set automatically by Render | — |
+=======
+# Civic-Connect-A-Complain-request-website-for-people-
+>>>>>>> 6805fb369c451ec9de4774f418d2efe07847ce9f
