@@ -1,0 +1,23 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}CivicConnect administration{% endblock %}
+
+{% block branding %}
+<div class="admin-brand">
+    <span class="admin-brand-mark">CC</span>
+    <div>
+        <strong>CivicConnect</strong>
+        <small>Community operations</small>
+    </div>
+</div>
+{% endblock %}
+
+{% block nav-global %}
+<a class="admin-site-link" href="{% url 'index' %}">View public site <span aria-hidden="true">↗</span></a>
+{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'admin/admin_custom.css' %}">
+{% endblock %}

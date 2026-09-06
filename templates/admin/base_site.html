@@ -1,0 +1,17 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}CivicConnect Admin{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'admin/custom_admin.css' %}">
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">CivicConnect <span>Control Center</span></a></h1>
+{% endblock %}
+
+{% block nav-global %}
+<div class="admin-public-link"><a href="{% url 'index' %}">View public site</a></div>
+{% endblock %}

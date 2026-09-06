@@ -1,0 +1,1265 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CivicConnect - Report. Support. Solve.</title>
+
+
+    <!-- 🌟 YEH LINE ADD Karni Hai -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f9fc;
+            color: #172033;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode {
+            background: #020817;
+            color: #e2e8f0;
+        }
+
+        body.dark-mode .logo,
+        body.dark-mode .hero h1,
+        body.dark-mode .problem-content h3,
+        body.dark-mode .section-heading h2,
+        body.dark-mode .report-info h2,
+        body.dark-mode .about h2,
+        body.dark-mode .problem-content .category {
+            color: #f8fafc;
+        }
+
+        body.dark-mode .nav-links a,
+        body.dark-mode .hero-text,
+        body.dark-mode .floating-card p,
+        body.dark-mode .stat p,
+        body.dark-mode .problem-content p,
+        body.dark-mode .location,
+        body.dark-mode .section-heading p,
+        body.dark-mode .report-info > p,
+        body.dark-mode .steps p,
+        body.dark-mode .about p,
+        body.dark-mode footer p {
+            color: #cbd5e1;
+        }
+
+        body.dark-mode .hero {
+            background: linear-gradient(rgba(2, 8, 23, 0.86), rgba(15, 23, 42, 0.9)), url("{% static 'images/Growing and sustaining prosperity for small-town Americans.jpg' %}") center / cover;
+            background-attachment: fixed;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(248, 250, 252, 0.28), rgba(248, 250, 252, 0.38)), url("{% static 'images/Growing and sustaining prosperity for small-town Americans.jpg' %}") center / cover;
+            background-attachment: fixed;
+        }
+
+        body.dark-mode .report-section,
+        body.dark-mode .about,
+        body.dark-mode .stats,
+        body.dark-mode .problem-card,
+        body.dark-mode form,
+        body.dark-mode .secondary-btn {
+            background-color: #0f172a;
+        }
+
+        .report-section {
+            background: linear-gradient(rgba(238, 242, 255, 0.52), rgba(238, 242, 255, 0.62)), url("{% static 'images/ArtDependence _ Construction and Deconstruction_ An Interview with Amy Sillman.jpg' %}") center / cover;
+            background-attachment: fixed;
+        }
+
+        body.dark-mode .report-section {
+            background: linear-gradient(rgba(2, 8, 23, 0.9), rgba(15, 23, 42, 0.94)), url("{% static 'images/ArtDependence _ Construction and Deconstruction_ An Interview with Amy Sillman.jpg' %}") center / cover;
+        }
+
+        body.dark-mode .floating-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(17, 24, 39, 0.95));
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            box-shadow: 0 20px 45px rgba(15, 23, 42, 0.55);
+        }
+
+        body.dark-mode .floating-card strong,
+        body.dark-mode .floating-card p {
+            color: #f8fafc;
+        }
+
+        body.dark-mode .floating-card p {
+            opacity: 0.8;
+        }
+
+        body.dark-mode .floating-card span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(96, 165, 250, 0.32), rgba(79, 70, 229, 0.32));
+            box-shadow: inset 0 0 18px rgba(255,255,255,0.08);
+        }
+
+        body.dark-mode .card-one span {
+            background: linear-gradient(135deg, rgba(96, 165, 250, 0.4), rgba(59, 130, 246, 0.25));
+        }
+
+        body.dark-mode .card-two span {
+            background: linear-gradient(135deg, rgba(250, 204, 21, 0.4), rgba(251, 146, 60, 0.2));
+        }
+
+        body.dark-mode .card-three span {
+            background: linear-gradient(135deg, rgba(96, 165, 250, 0.4), rgba(34, 211, 238, 0.25));
+        }
+
+        body.dark-mode .secondary-btn {
+            border-color: rgba(148, 163, 184, 0.4);
+            color: #f8fafc;
+        }
+
+        body.dark-mode .problem-card,
+        body.dark-mode form,
+        body.dark-mode .stats {
+            border-color: rgba(148, 163, 184, 0.2);
+            box-shadow: 0 15px 40px rgba(15, 23, 42, 0.5);
+        }
+
+        body.dark-mode .problem-image {
+            filter: brightness(0.9);
+        }
+
+        body.dark-mode .upvote,
+        body.dark-mode .filters input,
+        body.dark-mode .filters select,
+        body.dark-mode form input,
+        body.dark-mode form select,
+        body.dark-mode form textarea {
+            background: #111827;
+            border-color: rgba(148, 163, 184, 0.25);
+            color: #f8fafc;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floatCard {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .navbar {
+            height: 75px;
+            padding: 0 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            border-bottom: 1px solid #e8ebf0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        body.dark-mode .navbar {
+            background: #0f172a;
+            border-bottom-color: rgba(148, 163, 184, 0.2);
+        }
+
+        .theme-toggle {
+            border: 1px solid #d1d5db;
+            background: #f8fafc;
+            color: #1f2937;
+            border-radius: 999px;
+            padding: 9px 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.12);
+        }
+
+        body.dark-mode .theme-toggle {
+            background: #111827;
+            color: #f8fafc;
+            border-color: rgba(148, 163, 184, 0.3);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .logo span {
+            color: #4f46e5;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4b5563;
+            font-size: 15px;
+        }
+
+        .nav-links a:hover {
+            color: #4f46e5;
+        }
+
+        .login-btn {
+            padding: 10px 22px;
+            border: none;
+            border-radius: 8px;
+            background: #4f46e5;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(79, 70, 229, 0.2);
+        }
+
+        .hero {
+            min-height: 600px;
+            padding: 80px 8%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(rgba(248, 250, 252, 0.78), rgba(248, 250, 252, 0.86)), url("{% static 'images/Growing and sustaining prosperity for small-town Americans.jpg' %}") center / cover;
+            background-attachment: fixed;
+        }
+
+        .hero-content {
+            max-width: 620px;
+        }
+
+        .small-title {
+            color: #4f46e5;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 {
+            font-size: 58px;
+            line-height: 1.08;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: #4f46e5;
+        }
+
+        .hero-text {
+            color: #64748b;
+            line-height: 1.7;
+            font-size: 17px;
+            margin-bottom: 35px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .primary-btn,
+        .secondary-btn {
+            text-decoration: none;
+            padding: 14px 22px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+            display: inline-block;
+        }
+
+        .primary-btn {
+            background: #4f46e5;
+            color: white;
+        }
+
+        .primary-btn:hover,
+        .secondary-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 28px rgba(79, 70, 229, 0.18);
+        }
+
+        .secondary-btn {
+            border: 1px solid #d1d5db;
+            color: #374151;
+            background: white;
+        }
+
+        .hero-card {
+            position: relative;
+            width: 420px;
+            height: 400px;
+        }
+
+        .hero-card::before {
+            content: "";
+            position: absolute;
+            inset: 8% 4%;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(245, 183, 72, 0.12), transparent 68%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body.dark-mode .hero-card::before {
+            background: radial-gradient(circle, rgba(245, 183, 72, 0.09), transparent 68%);
+        }
+
+        .floating-card {
+            position: absolute;
+            width: 310px;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            animation: floatCard 5s ease-in-out infinite;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            z-index: 1;
+        }
+
+        .floating-card:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 20px 45px rgba(79, 70, 229, 0.12);
+        }
+
+        .floating-card span {
+            font-size: 30px;
+        }
+
+        .floating-card p {
+            margin-top: 6px;
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        .card-one {
+            top: 50px;
+            left: 20px;
+        }
+
+        .card-two {
+            top: 165px;
+            right: 0;
+            animation-delay: 0.8s;
+        }
+
+        .card-three {
+            bottom: 30px;
+            left: 40px;
+            animation-delay: 1.4s;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            background: white;
+            padding: 35px 8%;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .stat {
+            text-align: center;
+            border-right: 1px solid #e5e7eb;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .stat:hover {
+            transform: translateY(-6px);
+        }
+
+        .stat:last-child {
+            border: none;
+        }
+
+        .stat h2 {
+            font-size: 30px;
+            color: #4f46e5;
+        }
+
+        .stat p {
+            margin-top: 6px;
+            color: #64748b;
+        }
+
+        .problems-section {
+            padding: 90px 8%;
+        }
+
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            margin-bottom: 40px;
+        }
+
+        .section-heading h2 {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .section-heading p {
+            color: #64748b;
+        }
+
+        .filters {
+            display: flex;
+            gap: 10px;
+        }
+
+        .filters input,
+        .filters select {
+            padding: 12px 14px;
+            border: 1px solid #d7dce5;
+            border-radius: 8px;
+            background: white;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+
+        .problem-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #e8ebf0;
+            transition: 0.3s;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+        }
+
+        .problem-image {
+            height: 170px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 65px;
+        }
+
+        .waste {
+            background: #ecfdf5;
+        }
+
+        .light {
+            background: #fff7ed;
+        }
+
+        .water {
+            background: #eff6ff;
+        }
+
+        .road {
+            background: #f1f5f9;
+        }
+
+        .problem-content {
+            padding: 20px;
+        }
+
+        .category {
+            font-size: 12px;
+            color: #4f46e5;
+            font-weight: 700;
+        }
+
+        .problem-content h3 {
+            margin: 10px 0;
+            font-size: 19px;
+        }
+
+        .problem-content p {
+            color: #64748b;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        .location {
+            margin: 18px 0;
+            font-size: 13px;
+            color: #475569;
+        }
+
+        .problem-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .upvote {
+            border: none;
+            background: #f1f5f9;
+            padding: 8px 12px;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        .upvote:hover {
+            background: #e0e7ff;
+        }
+
+        .status {
+            font-size: 12px;
+            padding: 6px 9px;
+            border-radius: 20px;
+        }
+
+        .unresolved {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .progress {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .report-section {
+            background: linear-gradient(rgba(238, 242, 255, 0.9), rgba(238, 242, 255, 0.94)), url("{% static 'images/ArtDependence _ Construction and Deconstruction_ An Interview with Amy Sillman.jpg' %}") center / cover;
+            background-attachment: fixed;
+            padding: 90px 8%;
+        }
+
+        .report-container {
+            max-width: 1100px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: start;
+        }
+
+        .report-info h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .report-info > p {
+            color: #64748b;
+            line-height: 1.7;
+        }
+
+        .steps {
+            margin-top: 35px;
+        }
+
+        .steps div {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .steps span {
+            background: #4f46e5;
+            color: white;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .steps p {
+            color: #475569;
+        }
+
+        form {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.07);
+        }
+
+        form label {
+            display: block;
+            margin: 15px 0 7px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        form input,
+        form select,
+        form textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d7dce5;
+            border-radius: 7px;
+            font-family: inherit;
+        }
+
+        form textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        #imagePreview img {
+            max-width: 150px;
+            margin-top: 10px;
+            border-radius: 8px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            margin-top: 20px;
+            background: #4f46e5;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .submit-btn:hover {
+            background: #4338ca;
+        }
+
+        .about {
+            padding: 90px 20%;
+            text-align: center;
+            background: white;
+        }
+
+        .about h2 {
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .about p:last-child {
+            color: #64748b;
+            line-height: 1.7;
+        }
+
+        footer {
+            padding: 30px 8%;
+            background: #111827;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer p {
+            color: #9ca3af;
+            font-size: 14px;
+        }
+
+        @media (max-width: 1000px) {
+            .hero {
+                flex-direction: column;
+                gap: 50px;
+            }
+
+            .problem-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .report-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .hero-card {
+                width: 100%;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+
+            .problem-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+
+        <div class="logo">
+            Civic<span>Connect</span>
+        </div>
+
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#problems">Problems</a>
+            <a href="#report">Report Problem</a>
+            <a href="#about">About</a>
+        </div>
+
+        <div style="display: flex; gap: 10px; align-items: center;">
+            <button class="theme-toggle" id="themeToggle" type="button">🌙 Dark</button>
+            {% if user.is_authenticated %}
+                <span style="font-weight: bold;">Hi, {{ user.username }}</span>
+                <a href="{% url 'logout' %}" class="login-btn" style="text-decoration: none; background: #ef4444;">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="login-btn" style="text-decoration: none;">Login</a>
+                <a href="{% url 'signup' %}" class="login-btn" style="text-decoration: none; background: #fff; color: #4f46e5; border: 1px solid #4f46e5;">Sign Up</a>
+            {% endif %}
+        </div>
+
+    </nav>
+
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+
+        <div class="hero-content" data-aos="fade-right" data-aos-delay="100">
+
+            <p class="small-title">SMART INDIA HACKATHON 2026</p>
+
+            <h1>
+                Your Problem.
+                <span>Our Voice.</span>
+                Better Society.
+            </h1>
+
+            <p class="hero-text">
+                Report real problems in your community, support important
+                issues and help organizations discover problems that need
+                solutions.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#report" class="primary-btn">
+                    Report a Problem
+                </a>
+
+                <a href="#problems" class="secondary-btn">
+                    Explore Problems
+                </a>
+            </div>
+
+        </div>
+
+        <div class="hero-card" data-aos="zoom-in" data-aos-delay="250">
+
+            {% if problems %}
+                <div class="hero-carousel" id="problemCarousel">
+                    {% for problem in problems %}
+                        <div class="hero-slide {% if forloop.first %}active{% endif %}">
+                            <a href="{% url 'problem_detail' problem.pk %}" class="floating-card" style="text-decoration: none; color: inherit;">
+                                <span>📍</span>
+                                <div>
+                                    <h3>{{ problem.title }}</h3>
+                                    <small>{{ problem.category }} · {{ problem.location }}</small>
+                                    <p>{{ problem.people_affected }} people affected · {{ problem.verification_status }}</p>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                    <div class="carousel-controls">
+                        <button class="carousel-button" type="button" id="previousProblem">← Previous</button>
+                        <button class="carousel-button" type="button" id="nextProblem">Next →</button>
+                    </div>
+                </div>
+            {% else %}
+                {% for card in hero_cards %}
+                    <div class="{% if forloop.counter == 1 %}floating-card card-one{% elif forloop.counter == 2 %}floating-card card-two{% else %}floating-card card-three{% endif %}" data-aos="fade-left" data-aos-delay="{{ 300|add:forloop.counter0|add:forloop.counter0 }}">
+                        <span>{{ card.icon }}</span>
+                        <div>
+                            <strong>{{ card.title }}</strong>
+                            <p>0 people affected</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+        </div>
+
+    </section>
+
+
+    <!-- STATS -->
+    <section class="stats">
+
+        <div class="stat">
+            <h2 id="totalProblems">1,250</h2>
+            <p>Total Problems</p>
+        </div>
+
+        <div class="stat" data-aos="zoom-in" data-aos-delay="200">
+            <h2>540</h2>
+            <p>Resolved</p>
+        </div>
+
+        <div class="stat" data-aos="zoom-in" data-aos-delay="300">
+            <h2>310</h2>
+            <p>In Progress</p>
+        </div>
+
+        <div class="stat" data-aos="zoom-in" data-aos-delay="400">
+            <h2>400</h2>
+            <p>Unresolved</p>
+        </div>
+
+    </section>
+
+
+    <!-- PROBLEMS -->
+    <section class="problems-section" id="problems">
+
+        <div class="section-heading">
+
+            <div>
+                <p class="small-title">COMMUNITY VOICE</p>
+
+                <h2>Problems Around You</h2>
+
+                <p>
+                    Discover problems reported by people in different
+                    communities.
+                </p>
+            </div>
+
+            <div class="filters">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search problems..."
+                >
+
+                <select id="categoryFilter">
+
+                    <option value="all">All Categories</option>
+                    <option value="Waste">Waste Management</option>
+                    <option value="Street Light">Street Light Issue</option>
+                    <option value="Water">Water</option>
+                    <option value="Road">Road & Transport</option>
+                    <option value="Education">Education</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Infrastructure">Infrastructure</option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+<div class="problem-grid" id="problemGrid">
+
+    {% for problem in problems %}
+    <a href="{% url 'problem_detail' problem.pk %}" style="text-decoration: none; color: inherit; display: block;">
+        <div class="problem-card" data-category="{{ problem.category }}" data-aos="fade-up"> 
+
+            <div class="problem-image" style="background: #f1f5f9; display: flex; align-items: center; justify-content: center; height: 160px; border-radius: 8px 8px 0 0; overflow: hidden;">
+                {% if problem.image %}
+                    <img src="{{ problem.image.url }}" alt="Problem Image" style="width:100%; height:100%; object-fit:cover;">
+                {% else %}
+                    <span style="font-size: 40px;">📍</span>
+                {% endif %}
+            </div>
+
+            <div class="problem-content">
+                <span class="category">{{ problem.category }}</span>
+                
+                <h3>{{ problem.title }}</h3>
+                
+                <p>{{ problem.description }}</p>
+                
+                <div class="location">
+                    📍 {{ problem.location }}
+                </div>
+
+                <div class="location">
+                    👥 {{ problem.people_affected }} people affected
+                </div>
+                
+                <div class="problem-footer">
+                    <button class="upvote" type="button">
+                        👍 <span>{{ problem.upvotes }}</span>
+                    </button>
+                    
+                    <span class="status unresolved">
+                        {{ problem.status }}
+                    </span>
+
+                    <span class="status {% if problem.verification_status == 'Verified' %}verified{% elif problem.verification_status == 'Cancelled' %}rejected{% else %}pending{% endif %}">
+                        {{ problem.verification_status }}
+                    </span>
+                </div>
+            </div>
+
+        </div>
+    </a>
+    {% endfor %}
+
+</div>
+        
+
+    </section>
+
+
+    <!-- REPORT -->
+    <section class="report-section" id="report">
+
+        <div class="report-container">
+
+            <div class="report-info">
+
+                <p class="small-title">MAKE AN IMPACT</p>
+
+                <h2>
+                    Report a Problem
+                </h2>
+
+                <p>
+                    Found a problem in your community?
+                    Report it and let your voice be heard.
+                </p>
+
+                <div class="steps">
+
+                    <div>
+                        <span>01</span>
+                        <p>Describe the problem</p>
+                    </div>
+
+                    <div>
+                        <span>02</span>
+                        <p>Add location & evidence</p>
+                    </div>
+
+                    <div>
+                        <span>03</span>
+                        <p>Submit and get community support</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+ <form id="problemForm" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+     <input type="hidden" id="latitude" name="latitude">
+     <input type="hidden" id="longitude" name="longitude">
+
+    <label>Problem Title</label>
+    <input 
+        type="text" 
+        id="problemTitle" 
+        name="title" 
+        placeholder="Example: Garbage not collected" 
+        required
+    >
+
+    <label>Category</label>
+    <select id="problemCategory" name="category" required>
+        <option value="">Select category</option>
+        <option value="Waste">Waste Management</option>
+        <option value="Street Light">Street Light Issue</option>
+        <option value="Water">Water</option>
+        <option value="Road">Road & Transport</option>
+        <option value="Education">Education</option>
+        <option value="Healthcare">Healthcare</option>
+        <option value="Infrastructure">Infrastructure</option>
+    </select>
+
+    <label>Location</label>
+    <div style="display: flex; gap: 10px;">
+        <input 
+            type="text" 
+            id="problemLocation" 
+            name="location" 
+            placeholder="Example: Kolkata, West Bengal" 
+            required
+            style="flex-grow: 1;"
+        >
+        <button type="button" id="getLocationBtn" style="background: #e2e8f0; color: #1e293b; border: none; padding: 0 15px; border-radius: 5px; cursor: pointer; font-weight: bold;">
+            📍 Get Location
+        </button>
+        <button type="button" id="findPinpointBtn" style="background: #dbeafe; color: #1e3a8a; border: none; padding: 0 15px; border-radius: 5px; cursor: pointer; font-weight: bold;">
+            🔎 Find Pinpoint
+        </button>
+    </div>
+    <small id="locationMessage">Use Get Location for your current exact position, or enter an address and find its pinpoint.</small>
+    <a id="pinpointLink" href="#" target="_blank" rel="noopener" style="display: none;">View pinpoint on Google Maps</a>
+
+    <label>Description</label>
+    <textarea 
+        id="problemDescription" 
+        name="description" 
+        placeholder="Describe the problem..." 
+        required
+    ></textarea>
+
+    <label>People Affected</label>
+    <input 
+        type="number" 
+        id="peopleAffected" 
+        name="people_affected" 
+        min="0" 
+        value="0" 
+        required
+    >
+
+    <label>Evidence Photo (recommended)</label>
+    <input 
+        type="file" 
+        id="problemImage" 
+        name="image" 
+        accept="image/*"
+    >
+
+    <small>Photos, exact locations, and clear descriptions help moderators verify this report.</small>
+
+    <div id="imagePreview"></div>
+
+    <button type="submit" class="submit-btn">
+        Submit Problem →
+    </button>
+</form>
+           
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+
+        <p class="small-title">ABOUT THE PLATFORM</p>
+
+        <h2>
+            Turning Problems Into Solutions
+        </h2>
+
+        <p>
+            CivicConnect creates a bridge between citizens,
+            organizations, NGOs, educational institutions and
+            solution providers.
+        </p>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="logo">
+            Civic<span>Connect</span>
+        </div>
+
+        <p>
+            Report. Support. Solve.
+        </p>
+
+        <p>
+            SIH 2026 Prototype
+        </p>
+
+    </footer>
+
+
+    <script src="{% static 'script.js' %}"></script>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+
+        function applyTheme(theme) {
+            const isDark = theme === 'dark';
+            document.body.classList.toggle('dark-mode', isDark);
+            if (themeToggle) {
+                themeToggle.textContent = isDark ? '☀️ Light' : '🌙 Dark';
+            }
+        }
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            applyTheme(savedTheme);
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            applyTheme('dark');
+        }
+
+        if (themeToggle) {
+            themeToggle.addEventListener('click', function() {
+                const nextTheme = document.body.classList.contains('dark-mode') ? 'light' : 'dark';
+                localStorage.setItem('theme', nextTheme);
+                applyTheme(nextTheme);
+            });
+        }
+
+        document.getElementById('getLocationBtn').addEventListener('click', function() {
+            const locationInput = document.getElementById('problemLocation');
+            const btn = this;
+
+            // Check agar browser location support karta hai
+            if (navigator.geolocation) {
+                btn.innerHTML = "⏳ Wait...";
+                
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        const lat = position.coords.latitude;
+                        const lon = position.coords.longitude;
+                        document.getElementById('latitude').value = lat;
+                        document.getElementById('longitude').value = lon;
+
+                        // Free OpenStreetMap API se Latitude/Longitude ko Address mein badalna
+                        fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                // City aur State nikalna
+                                let city = data.address.city || data.address.town || data.address.county || "";
+                                let state = data.address.state || "";
+                                
+                                if (city && state) {
+                                    locationInput.value = `${city}, ${state}`;
+                                } else {
+                                    locationInput.value = data.display_name; // Agar short naam na mile toh poora address
+                                }
+                                
+                                btn.innerHTML = "✅ Done";
+                                setTimeout(() => btn.innerHTML = "📍 Get Location", 3000); // 3 sec baad button wapas normal
+                            })
+                            .catch(error => {
+                                console.error("Error:", error);
+                                btn.innerHTML = "❌ Error";
+                                alert("Location fetch nahi ho payi. Pincode/City type kar dein.");
+                            });
+                    },
+                    function(error) {
+                        btn.innerHTML = "❌ Denied";
+                        alert("Aapne location access allow nahi kiya. Kripya browser mein location on karein.");
+                    }
+                );
+            } else {
+                alert("Aapka browser location support nahi karta.");
+            }
+        });
+
+        document.getElementById('findPinpointBtn').addEventListener('click', function() {
+            const locationInput = document.getElementById('problemLocation');
+            const latitudeInput = document.getElementById('latitude');
+            const longitudeInput = document.getElementById('longitude');
+            const message = document.getElementById('locationMessage');
+            const pinpointLink = document.getElementById('pinpointLink');
+            const address = locationInput.value.trim();
+
+            if (!address) {
+                message.textContent = 'Enter the problem address first.';
+                return;
+            }
+
+            this.textContent = '⏳ Finding...';
+            fetch(`https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&q=${encodeURIComponent(address)}`)
+                .then(response => response.json())
+                .then(results => {
+                    if (!results.length) {
+                        throw new Error('Location not found');
+                    }
+
+                    const result = results[0];
+                    latitudeInput.value = result.lat;
+                    longitudeInput.value = result.lon;
+                    pinpointLink.href = `https://www.google.com/maps?q=${result.lat},${result.lon}`;
+                    pinpointLink.style.display = 'inline-block';
+                    message.textContent = `Pinpoint found: ${result.display_name}`;
+                    this.textContent = '✅ Found';
+                })
+                .catch(() => {
+                    latitudeInput.value = '';
+                    longitudeInput.value = '';
+                    pinpointLink.style.display = 'none';
+                    message.textContent = 'Pinpoint not found. Add a nearby landmark, street, city, or PIN code.';
+                    this.textContent = '🔎 Find Pinpoint';
+                });
+        });
+    </script>
+
+    <script>
+        const carousel = document.getElementById('problemCarousel');
+        if (carousel) {
+            const slides = carousel.querySelectorAll('.hero-slide');
+            const previousButton = document.getElementById('previousProblem');
+            const nextButton = document.getElementById('nextProblem');
+            let currentSlide = 0;
+
+            function showSlide(index) {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (index + slides.length) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }
+
+            previousButton.addEventListener('click', () => showSlide(currentSlide - 1));
+            nextButton.addEventListener('click', () => showSlide(currentSlide + 1));
+        }
+    </script>
+
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+      duration: 800,
+      once: true
+  });
+</script>
+
+</body> 
+</html>

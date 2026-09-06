@@ -1,0 +1,784 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f7f9fc;
+    color: #172033;
+}
+
+.navbar {
+    height: 75px;
+    padding: 0 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    border-bottom: 1px solid #e8ebf0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+}
+
+ .logo span {
+    color: #4f46e5;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes floatCard {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        box-shadow: 0 15px 40px rgba(79, 70, 229, 0.12);
+    }
+    50% {
+        box-shadow: 0 20px 45px rgba(79, 70, 229, 0.2);
+    }
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #4b5563;
+    font-size: 15px;
+}
+
+.nav-links a:hover {
+    color: #4f46e5;
+}
+
+.login-btn {
+    padding: 10px 22px;
+    border: none;
+    border-radius: 8px;
+    background: #4f46e5;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.login-btn:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 12px 25px rgba(79, 70, 229, 0.2);
+}
+
+.hero {
+    min-height: 600px;
+    padding: 80px 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(135deg, #eef2ff, #f8fafc);
+}
+
+.hero-content {
+    max-width: 620px;
+}
+
+.small-title {
+    color: #4f46e5;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    font-size: 58px;
+    line-height: 1.08;
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    color: #4f46e5;
+}
+
+.hero-text {
+    color: #64748b;
+    line-height: 1.7;
+    font-size: 17px;
+    margin-bottom: 35px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.primary-btn,
+.secondary-btn {
+    text-decoration: none;
+    padding: 14px 22px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    display: inline-block;
+}
+
+.primary-btn {
+    background: #4f46e5;
+    color: white;
+}
+
+.primary-btn:hover,
+.secondary-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 28px rgba(79, 70, 229, 0.18);
+}
+
+.secondary-btn {
+    border: 1px solid #d1d5db;
+    color: #374151;
+    background: white;
+}
+
+.hero-card {
+    width: 420px;
+    height: 400px;
+    position: relative;
+}
+
+.hero-carousel {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.hero-slide {
+    display: none;
+    inset: 0;
+    position: absolute;
+}
+
+.hero-slide.active {
+    display: block;
+}
+
+.hero-slide .floating-card {
+    top: 115px;
+    left: 35px;
+    width: 350px;
+}
+
+.hero-slide .floating-card h3 {
+    margin: 0;
+    font-size: 17px;
+}
+
+.hero-slide .floating-card small {
+    display: block;
+    margin-top: 5px;
+    color: #64748b;
+}
+
+.carousel-controls {
+    bottom: 35px;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    right: 0;
+}
+
+.carousel-button {
+    background: #4f46e5;
+    border: 0;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    font-weight: 700;
+    padding: 10px 15px;
+}
+
+.carousel-button:hover {
+    background: #4338ca;
+}
+
+body.dark-mode .hero-slide .floating-card small {
+    color: #cbd5e1;
+}
+
+.floating-card {
+    position: absolute;
+    width: 310px;
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    animation: floatCard 5s ease-in-out infinite;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.floating-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 20px 45px rgba(79, 70, 229, 0.12);
+}
+
+.floating-card span {
+    font-size: 30px;
+}
+
+.floating-card p {
+    margin-top: 6px;
+    color: #64748b;
+    font-size: 13px;
+}
+
+.card-one {
+    top: 50px;
+    left: 20px;
+}
+
+.card-two {
+    top: 165px;
+    right: 0;
+    animation-delay: 0.8s;
+}
+
+.card-three {
+    bottom: 30px;
+    left: 40px;
+    animation-delay: 1.4s;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: white;
+    padding: 35px 8%;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.stat {
+    text-align: center;
+    border-right: 1px solid #e5e7eb;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.stat:hover {
+    transform: translateY(-6px);
+}
+
+.stat:last-child {
+    border: none;
+}
+
+.stat h2 {
+    font-size: 30px;
+    color: #4f46e5;
+}
+
+.stat p {
+    margin-top: 6px;
+    color: #64748b;
+}
+
+.problems-section {
+    padding: 90px 8%;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 40px;
+}
+
+.section-heading h2 {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+.section-heading p {
+    color: #64748b;
+}
+
+.filters {
+    display: flex;
+    gap: 10px;
+}
+
+.filters input,
+.filters select {
+    padding: 12px 14px;
+    border: 1px solid #d7dce5;
+    border-radius: 8px;
+    background: white;
+}
+
+.problem-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+}
+
+.problem-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid #e8ebf0;
+    transition: 0.3s;
+}
+
+.problem-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+}
+
+.problem-image {
+    height: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 65px;
+}
+
+.waste {
+    background: #ecfdf5;
+}
+
+.light {
+    background: #fff7ed;
+}
+
+.water {
+    background: #eff6ff;
+}
+
+.road {
+    background: #f1f5f9;
+}
+
+.problem-content {
+    padding: 20px;
+}
+
+.category {
+    font-size: 12px;
+    color: #4f46e5;
+    font-weight: 700;
+}
+
+.problem-content h3 {
+    margin: 10px 0;
+    font-size: 19px;
+}
+
+.problem-content p {
+    color: #64748b;
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+.location {
+    margin: 18px 0;
+    font-size: 13px;
+    color: #475569;
+}
+
+.problem-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.upvote {
+    border: none;
+    background: #f1f5f9;
+    padding: 8px 12px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.upvote:hover {
+    background: #e0e7ff;
+}
+
+.status {
+    font-size: 12px;
+    padding: 6px 9px;
+    border-radius: 20px;
+}
+
+.unresolved {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.progress {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.report-section {
+    background: #eef2ff;
+    padding: 90px 8%;
+}
+
+.report-container {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: start;
+}
+
+.report-info h2 {
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+.report-info > p {
+    color: #64748b;
+    line-height: 1.7;
+}
+
+.steps {
+    margin-top: 35px;
+}
+
+.steps div {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.steps span {
+    background: #4f46e5;
+    color: white;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+.steps p {
+    color: #475569;
+}
+
+form {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.07);
+}
+
+form label {
+    display: block;
+    margin: 15px 0 7px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+form input,
+form select,
+form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d7dce5;
+    border-radius: 7px;
+    font-family: inherit;
+}
+
+form textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+#imagePreview img {
+    max-width: 150px;
+    margin-top: 10px;
+    border-radius: 8px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    margin-top: 20px;
+    background: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.submit-btn:hover {
+    background: #4338ca;
+}
+
+.about {
+    padding: 90px 20%;
+    text-align: center;
+    background: white;
+}
+
+.about h2 {
+    font-size: 38px;
+    margin-bottom: 15px;
+}
+
+.about p:last-child {
+    color: #64748b;
+    line-height: 1.7;
+}
+
+footer {
+    padding: 30px 8%;
+    background: #111827;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer p {
+    color: #9ca3af;
+    font-size: 14px;
+}
+
+@media (max-width: 1000px) {
+
+    .hero {
+        flex-direction: column;
+        gap: 50px;
+    }
+
+    .problem-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .report-container {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 700px) {
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero h1 {
+        font-size: 40px;
+    }
+
+    .hero-card {
+        width: 100%;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+
+    .stat {
+        border: none;
+    }
+
+    .section-heading {
+        flex-direction: column;
+        align-items: start;
+        gap: 20px;
+    }
+
+    .filters {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .problem-grid {
+        grid-template-columns: 1fr;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+}
+
+/* =========================================
+    EXTRA  ANIMATIONS FOR STYLE.CSS
+   ========================================= */
+
+/* 1. Primary Buttons  Glowing Pulse Effect */
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(79, 70, 229, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(79, 70, 229, 0);
+    }
+}
+
+.primary-btn {
+    animation: pulseGlow 3s infinite;
+}
+
+/* 2. Problem Cards  Hover  Border Glow */
+.problem-card {
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.problem-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    border-color: #4f46e5; /* Hover par border indigo color ka ho jayega */
+    box-shadow: 0 20px 40px rgba(79, 70, 229, 0.12);
+}
+
+/* 3. Stats section  numbers par smooth hover lift */
+.stat {
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.stat:hover {
+    transform: translateY(-5px);
+}
+
+.stat h2 {
+    transition: color 0.3s ease;
+}
+
+.stat:hover h2 {
+    color: #4338ca;
+}
+
+/* 4. Hero Heading  Span (Our Voice)  subtle color shift */
+.hero h1 span {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.hero h1 span:hover {
+    transform: scale(1.05);
+}
+
+.hero-content {
+    animation: heroContentIn 0.8s ease-out both;
+}
+
+.hero-card .floating-card {
+    animation: heroCardIn 0.7s ease-out both, floatingCard 4s ease-in-out 0.7s infinite;
+}
+
+.hero-card .card-one {
+    animation-delay: 0.2s, 0.9s;
+}
+
+.hero-card .card-two {
+    animation-delay: 0.4s, 1.1s;
+}
+
+.hero-card .card-three {
+    animation-delay: 0.6s, 1.3s;
+}
+
+@keyframes heroContentIn {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes heroCardIn {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes floatingCard {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+.problem-card {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.card-show {
+    animation: cardFadeIn 0.3s ease forwards;
+}
+
+.card-hidden {
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+@keyframes cardFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
